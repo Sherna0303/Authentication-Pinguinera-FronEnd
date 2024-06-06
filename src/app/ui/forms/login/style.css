@@ -54,12 +54,19 @@
   text-decoration: none;
   transition: color 0.3s ease;
   cursor: pointer;
-  margin-bottom: 20px;
   display: inline-block;
 }
 
 .auth__register-link:hover {
   text-decoration: underline;
+}
+
+.auth__error{
+  color: rgb(255, 25, 25);
+  font-size: 0.9em;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 @keyframes fadeIn {
