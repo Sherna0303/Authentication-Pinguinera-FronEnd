@@ -1,13 +1,12 @@
 import { ReactElement } from 'react';
-import './ui/styles/global.css';
-import './ui/styles/normalize.css';
 import { RouterProvider } from 'react-router-dom';
-import { router } from './routes/routes';
+import { router } from './routes/router';
+import { AppProvider } from './core/state/AppContext';
 
 export const App = (): ReactElement => {
   return (
-    <>
-      <RouterProvider router={router}/>
-    </>
+    <AppProvider>
+      <RouterProvider router={router} />
+    </AppProvider>
   );
 };
