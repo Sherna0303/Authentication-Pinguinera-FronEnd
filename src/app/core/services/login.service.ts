@@ -8,11 +8,14 @@ interface LoginResponse {
 }
 
 export const authServiceLogin = (credentials: IUserCredentials): Promise<LoginResponse> => {
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json'
+  };
   const url = urls.login;
   // const body = authenticationMapper.toApiLogin(credentials);
   const body = credentials;
 
-  return http.post(url, body)
+  return http.post(url, headers, body)
     .then((response) => {
       const { status } = response;
       return response.json().then((data) => ({

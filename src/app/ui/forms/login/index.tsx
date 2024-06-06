@@ -83,13 +83,13 @@ const FormLogin: React.FC<LoginProps> = ({ handleSubmit }: LoginProps) => {
           placeHolder='Ingresa tu contraseña'
           onChange={handlePasswordChange}
         />
+        {state.error && <p className="auth__error">{state.error}</p>}
 
         <button className="auth__button auth__button--primary" type="submit">
           Iniciar sesión
         </button>
 
         <p>¿No tienes una cuenta? <Link to='/register' className="auth__register-link">Regístrate</Link></p>
-        {state.error && <p className="auth__error">{state.error}</p>}
       </fieldset>
     </form>
   );

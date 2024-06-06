@@ -3,10 +3,11 @@ import { IUserRegister } from '../models/user-register.model';
 import { urls } from '../resources/url.resource';
 import http from './general/http.service';
 
-export const registerService = (credencials: IUserRegister):Promise<number> => {
+export const registerService = (credencials: IUserRegister):Promise<number | undefined> => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json'
   };
+  
   const url = urls.register;
   const body = registerMapper.toApi(credencials);
   return http.post(url, headers,body)
@@ -16,7 +17,8 @@ export const registerService = (credencials: IUserRegister):Promise<number> => {
         if (responseBody.token) {
           const token = responseBody.token;
           console.log(token);
-          window.location.replace('http://localhost:8080/home?token=' + token);
+          window.location.replace(urls.home + '?token=' + token);
+          return;
         }
       }
       return response.status;

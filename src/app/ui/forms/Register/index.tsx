@@ -4,11 +4,11 @@ import { Span } from '../../elements/Span';
 import { Button } from '../../elements/Button';
 import { Title } from '../../elements/Title';
 import { LinkRoute } from '../../elements/LinkRoute';
-import { useRegister } from '../../../core/hooks/userRegister';
+import { useAuthRegister } from '../../../core/hooks/userRegister';
 import './style.css';
 
 export const FormRegister = (): ReactElement => {
-  const { register, error } = useRegister();
+  const { register, error } = useAuthRegister();
   const [username, setUsername] = useState<string>('');
   const [nameError, setNameError] = useState<string | null>(null);
   const [email, setEmail] = useState<string>('');
@@ -110,7 +110,7 @@ export const FormRegister = (): ReactElement => {
 
         <div className="register__signIn">
           <Span className='register__span' text='¿Ya tienes una cuenta?'/>
-          <LinkRoute text='Inicia Sesión' className='register__signIn-register' route='#'/>
+          <LinkRoute text='Inicia Sesión' className='register__signIn-register' route='/login'/>
         </div>
       </form>
     </div>
