@@ -1,6 +1,6 @@
 import { ReactElement, useContext } from 'react';
 import './style.css';
-import FormLogin from '../../forms/login';
+import FormLogin from '../../forms/Login';
 import { AppContext } from '../../../core/state/AppContext';
 import { useAuthLogin } from '../../../core/hooks/useAuthLogin';
 
