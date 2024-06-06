@@ -2,17 +2,21 @@ import { ReactElement, ReactNode, createContext, useReducer } from 'react';
 
 export const initialState: IState = {
   email: '',
-  password: ''
+  password: '',
+  error: ''
 };
 
 interface IState {
   email: string;
   password: string
+  error: string
+
 }
 
 type Action =
   | { type: 'EMAIL_CHANGED', payload: string }
-  | { type: 'PASSWORD_CHANGED', payload: string };
+  | { type: 'PASSWORD_CHANGED', payload: string }
+  | { type: 'ERROR_CHANGED', payload: string };
 
 interface IAppContext {
   state: IState;
@@ -36,6 +40,8 @@ export const reducer = (state: IState, action: IAction): IState => {
     return { ...state, email: action.payload };
   case 'PASSWORD_CHANGED':
     return { ...state, password: action.payload };
+  case 'ERROR_CHANGED':
+    return { ...state, error: action.payload };
   default:
     return state;
   }
