@@ -17,19 +17,32 @@ export const useAuthLogin = () => {
 
   const authenticate = (email: string, password: string) => authServiceLogin({ Email: email, Password: password })
     .then((response) => {
-      const token = response;
-      if (token) {
-        //const decodedToken = jwtDecode(token) as { [key: string]: DecodedToken };
-        //const token = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/userdata'];
+      switch (response.statusCode) {
+      case 400:
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de autenticación',
+          text: 'Credenciales inválidas',
+        });
+        break;
+
+      case 500:
+        Swal.fire({
+          icon: 'error',
+          title: 'Error del servidor',
+          text: 'Ha ocurrido un error en el servidor',
+        });
+        break;
+      case 200:
         Swal.fire({
           icon: 'success',
-          title: 'Formulario enviado',
-          text: 'El formulario se ha enviado correctamente.',
+          title: 'Éxito',
+          text: 'Has iniciado sesión correctamente',
         });
-        navigateTo('/home/' + token);
-      } else {
-        alert('Las credenciales proporcionadas son incorrectas.');
+        navigateTo('/home/'+response.token);
+
       }
+
     });
   return { authenticate };
 };
