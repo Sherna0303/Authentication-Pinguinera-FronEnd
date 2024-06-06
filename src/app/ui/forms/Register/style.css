@@ -48,6 +48,11 @@
     font-size: 0.85rem;
 }
 
+.register__input:focus {
+    border-color: #136696;
+    outline: none;
+  }
+
 .register__button {
     margin: 20px auto;
     padding: 10px 20px;
