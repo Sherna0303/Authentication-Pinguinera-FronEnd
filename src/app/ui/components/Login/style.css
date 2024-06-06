@@ -1,0 +1,149 @@
+/* style.css */
+main.auth {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin:  auto;
+  background-color: #FAF8F8;
+}
+
+main.authLogin {
+  height: 75vh;
+}
+
+.auth__form {
+  width: 370px;
+  padding: 50px;
+  border-radius: 10px;
+  border: solid 1px #ccc;
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  height: auto;
+  animation: slideIn 1s ease-in-out;
+
+}
+
+.auth__fieldset {
+  border: none;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.auth__legend {
+  color: #136696;
+  font-weight: 800;
+  font-size: 1.8em;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth__label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 3px;
+  color: #212529;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+
+
+.auth__input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 100%;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+  transition: border-color 0.3s ease;
+
+}
+
+.auth__input:focus {
+  border-color: #136696;
+  outline: none;
+}
+
+.auth__button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-: 0px;
+  border-radius: 15px;
+}
+
+.auth__button--primary {
+  background-color: #136696;
+  color: #fff;
+}
+
+.auth__button--primary:hover {
+  background-color: #1a84c9;
+}
+
+.auth__register-link {
+  text-align: center;
+  font-size: 16px;
+  color: #136696;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.auth__register-link:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 1200px) {
+  .auth__image {
+    display: none;
+  }
+
+  main.auth {
+    height: 44vh;
+  }
+
+  main.authLogin {
+    height: 35vh;
+  }
+}
+
+@media (max-width: 600px) {
+  main.auth {
+    height: 55vh;
+  }
+
+  main.authLogin {
+    height: 50vh;
+  }
+}
