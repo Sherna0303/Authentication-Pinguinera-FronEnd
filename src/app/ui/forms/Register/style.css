@@ -131,3 +131,20 @@
     margin-top: 5px;
     font-size: 14px;
 }
+
+@media screen and (width < 420px) {
+    .register__form {
+        min-width: 320px !important;
+    }
+
+    .register__signIn {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media screen and (width < 344px) {
+    .register__form {
+        min-width: 290px !important;
+    }
+}
