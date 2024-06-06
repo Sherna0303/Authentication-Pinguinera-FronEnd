@@ -8,12 +8,15 @@ export const useRegister = () => {
   
   const register = (name: string, email: string, password: string) => {
     registerService({ name, email, password })
-      .then((isAuthenticated) => {
-        if (isAuthenticated) {
-          navigate('/');
-        } else {
-          setError('Could not register');
-        }
+      .then((AuthenticatedResponse) => {
+        const responseHandlers: { [key: number]: () => void } = {
+          200: () => navigate('/'),
+          400: () => setError('El correo electrónico ya está registrado'),
+          500: () => setError('Error interno en el servidor'),
+        };
+        
+        const handleResponse = responseHandlers[AuthenticatedResponse] || (() => setError('Error desconocido'));
+        handleResponse();        
       });
   };
   

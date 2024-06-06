@@ -3,7 +3,7 @@ import { IUserRegister } from '../models/user-register.model';
 import { urls } from '../resources/url.resource';
 import http from './general/http.service';
 
-export const registerService = (credencials: IUserRegister):Promise<boolean> => {
+export const registerService = (credencials: IUserRegister):Promise<number> => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json'
   };
@@ -17,11 +17,8 @@ export const registerService = (credencials: IUserRegister):Promise<boolean> => 
         if (responseBody.token) {
           const token = responseBody.token; 
           console.log(token);
-          return true;
         }
-      } else if (response.status === 401){
-        window.location.reload();
       }
-      return false;
+      return response.status;
     });
 };
