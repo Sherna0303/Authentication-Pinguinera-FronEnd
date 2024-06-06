@@ -91,24 +91,24 @@ export const FormRegister = (): ReactElement => {
   return (
     <div className='register__container'>
       <form onSubmit={handleSubmit} className='register__form'>
-        <Title type='h1' text='Registro' className='register__title'/>
+        <Title type='h1' text='Registro' className='register__title fade-in'/>
         <fieldset className='register__fieldset'>
-          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput={`register__input ${nameError ? 'error' : ''}`} nameInput='name' type='text' text='Username' onChange={handleUsernameChange} placeHolder='Ingresa un username'/>
+          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput={`register__input ${nameError ? 'error' : ''} fade-in`} nameInput='name' type='text' text='Username' onChange={handleUsernameChange} placeHolder='Ingresa un username'/>
           {nameError && <Span className='register__span-error' text={nameError} />}
-          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput={`register__input ${emailError ? 'error' : ''}`} nameInput='email' type='text' text='Correo electrónico' onChange={handleEmailChange} placeHolder='Ingresa un correo electrónico' />
+          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput={`register__input ${emailError ? 'error' : ''} fade-in`} nameInput='email' type='text' text='Correo electrónico' onChange={handleEmailChange} placeHolder='Ingresa un correo electrónico' />
           {emailError && <Span className='register__span-error' text={emailError} />}
-          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput='register__input' nameInput='password' type='password' text='Contraseña' onChange={handlePasswordChange} placeHolder='Ingresa una contraseña'/>
-          <div className="password-strength">
+          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput='register__input fade-in' nameInput='password' type='password' text='Contraseña' onChange={handlePasswordChange} placeHolder='Ingresa una contraseña'/>
+          <div className="password-strength fade-in">
             <div className={`strength-bar strength-${passwordStrength}`} />
             <Span className={`strength-text strength-${passwordStrength}`} text={PasswordStrengthDescription(passwordStrength)} />
           </div>
-          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput='register__input' nameInput='repeatPassword' type='password' text='Repita la contraseña' onChange={handleRepeatPasswordChange} placeHolder='Ingresa de nuevo la contraseña' />
+          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput='register__input fade-in' nameInput='repeatPassword' type='password' text='Repita la contraseña' onChange={handleRepeatPasswordChange} placeHolder='Ingresa de nuevo la contraseña' />
           {passwordMatchError && <Span className='register__span-error' text={passwordMatchError} />}
           {error && <Span className='register__span-error' text={error} />}
         </fieldset>
-        <Button className='register__button' text='Registrarse' disabled={!username || !email || !password || !repeatPassword || password.length < 8 || password !== repeatPassword || username.length < 3 || !isValidEmail(email)} />
+        <Button className='register__button fade-in' text='Registrarse' disabled={!username || !email || !password || !repeatPassword || password.length < 8 || password !== repeatPassword || username.length < 3 || !isValidEmail(email)} />
 
-        <div className="register__signIn">
+        <div className="register__signIn fade-in">
           <Span className='register__span' text='¿Ya tienes una cuenta?'/>
           <LinkRoute text='Inicia Sesión' className='register__signIn-register' route='/login'/>
         </div>
