@@ -6,18 +6,19 @@ interface LabelProps {
   classNameInput: string;
   classNameSpan: string;
   text: string;
+  placeHolder: string;
   type: string;
   nameInput: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   hasError?: boolean;
 }
 
-export const Label = ({ classNameLabel, classNameInput, classNameSpan, text, type, nameInput, onChange, hasError }: LabelProps): ReactElement => {
+export const Label = ({ classNameLabel, classNameInput, classNameSpan, text, type, nameInput, onChange, hasError,placeHolder }: LabelProps): ReactElement => {
 
   return (
     <label className={classNameLabel}>
       <span className={classNameSpan}>{text}</span>
-      <input className={`${classNameInput} ${hasError ? 'error' : ''}`} type={type} name={nameInput} onChange={onChange} />
+      <input className={`${classNameInput} ${hasError ? 'error' : ''}`} type={type} name={nameInput} onChange={onChange} placeholder={placeHolder} />
     </label>
   );
 };

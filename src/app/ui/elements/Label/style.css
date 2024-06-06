@@ -1,0 +1,25 @@
+.auth__label {
+  display: block;
+  font-size: 16px;
+  color: #212529;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+
+.auth__input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 100%;
+  margin-top: 3px;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  transition: border-color 0.3s ease;
+
+}
+
+.auth__input:focus {
+  border-color: #136696;
+  outline: none;
+}
