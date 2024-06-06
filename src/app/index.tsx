@@ -1,4 +1,3 @@
-// Agrupación de la aplicación, segundo punto de entrada
 import { ReactElement } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/router';
