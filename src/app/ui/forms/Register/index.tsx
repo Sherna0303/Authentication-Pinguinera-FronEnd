@@ -4,9 +4,11 @@ import { Span } from '../../elements/Span';
 import { Button } from '../../elements/Button';
 import { Title } from '../../elements/Title';
 import { LinkRoute } from '../../elements/LinkRoute';
+import { useRegister } from '../../../core/hooks/userRegister';
 import './style.css';
 
 export const FormRegister = (): ReactElement => {
+  const { register, error } = useRegister();
   const [username, setUsername] = useState<string>('');
   const [nameError, setNameError] = useState<string | null>(null);
   const [email, setEmail] = useState<string>('');
@@ -22,6 +24,8 @@ export const FormRegister = (): ReactElement => {
     if (!username || !email || !password || !repeatPassword || password.length < 8 || password !== repeatPassword || username.length < 3 || !isValidEmail(email)) {
       return;
     }
+
+    register(username, email, password);
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,6 +104,7 @@ export const FormRegister = (): ReactElement => {
           </div>
           <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput='register__input' nameInput='repeatPassword' type='password' text='Repita la contraseña' onChange={handleRepeatPasswordChange} />
           {passwordMatchError && <Span className='register__span-error' text={passwordMatchError} />}
+          {error && <Span className='register__span-error' text={error} />}
         </fieldset>
         <Button className='register__button' text='Sign Up' disabled={!username || !email || !password || !repeatPassword || password.length < 8 || password !== repeatPassword || username.length < 3 || !isValidEmail(email)} />
 
