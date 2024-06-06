@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
 import { Label } from '../../elements/Label';
 import './style.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AppContext } from '../../../core/state/AppContext';
 
 interface LoginProps {
   handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const FormLogin: React.FC<LoginProps> = ({ handleSubmit }: LoginProps) => {
+
+  const { dispatch } = useContext(AppContext);
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -18,8 +21,12 @@ const FormLogin: React.FC<LoginProps> = ({ handleSubmit }: LoginProps) => {
     setEmail(newEmail);
     if (!isValidEmail(email)) {
       setError('Introduzca una dirección de correo electrónico válida');
+      dispatch({ type: 'EMAIL_CHANGED', payload: '' });
+
     } else {
       setError('');
+      dispatch({ type: 'EMAIL_CHANGED', payload: email });
+
     }
   };
 
@@ -32,11 +39,17 @@ const FormLogin: React.FC<LoginProps> = ({ handleSubmit }: LoginProps) => {
     setPassword(newPassword);
     if (password.length < 1) {
       setError('La contraseña no puede estar vacía');
+      dispatch({ type: 'PASSWORD_CHANGED', payload: '' });
+
     }
-    if (password.length < 8) {
+    else if (password.length < 8) {
       setError('La contraseña debe tener al menos 8 caracteres');
+      dispatch({ type: 'PASSWORD_CHANGED', payload: '' });
+
     } else {
       setError('');
+      dispatch({ type: 'PASSWORD_CHANGED', payload: password });
+
     }
   };
 
