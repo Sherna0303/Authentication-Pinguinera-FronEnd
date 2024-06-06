@@ -93,16 +93,16 @@ export const FormRegister = (): ReactElement => {
       <form onSubmit={handleSubmit} className='register__form'>
         <Title type='h1' text='Registro' className='register__title fade-in'/>
         <fieldset className='register__fieldset'>
-          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput={`register__input ${nameError ? 'error' : ''} fade-in`} nameInput='name' type='text' text='Username' onChange={handleUsernameChange} placeHolder='Ingresa un username'/>
+          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput={`register__input ${nameError ? 'error' : ''} fade-in`} nameInput='name' type='text' text='Username' onChange={handleUsernameChange} placeHolder='example'/>
           {nameError && <Span className='register__span-error' text={nameError} />}
-          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput={`register__input ${emailError ? 'error' : ''} fade-in`} nameInput='email' type='text' text='Correo electrónico' onChange={handleEmailChange} placeHolder='Ingresa un correo electrónico' />
+          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput={`register__input ${emailError ? 'error' : ''} fade-in`} nameInput='email' type='text' text='Correo electrónico' onChange={handleEmailChange} placeHolder='example@example.com' />
           {emailError && <Span className='register__span-error' text={emailError} />}
-          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput='register__input fade-in' nameInput='password' type='password' text='Contraseña' onChange={handlePasswordChange} placeHolder='Ingresa una contraseña'/>
+          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput='register__input fade-in' nameInput='password' type='password' text='Contraseña' onChange={handlePasswordChange} placeHolder='Security01#'/>
           <div className="password-strength fade-in">
             <div className={`strength-bar strength-${passwordStrength}`} />
             <Span className={`strength-text strength-${passwordStrength}`} text={PasswordStrengthDescription(passwordStrength)} />
           </div>
-          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput='register__input fade-in' nameInput='repeatPassword' type='password' text='Repita la contraseña' onChange={handleRepeatPasswordChange} placeHolder='Ingresa de nuevo la contraseña' />
+          <Label classNameLabel='register__label' classNameSpan='register__span' classNameInput='register__input fade-in' nameInput='repeatPassword' type='password' text='Repita la contraseña' onChange={handleRepeatPasswordChange} placeHolder='Security01#' />
           {passwordMatchError && <Span className='register__span-error' text={passwordMatchError} />}
           {error && <Span className='register__span-error' text={error} />}
         </fieldset>
