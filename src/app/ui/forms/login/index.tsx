@@ -6,26 +6,30 @@ import { AppContext } from '../../../core/state/AppContext';
 
 interface LoginProps {
   handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleError?: string;
+  setError?: (error: string) => void;
 }
 
 const FormLogin: React.FC<LoginProps> = ({ handleSubmit }: LoginProps) => {
 
   const { dispatch } = useContext(AppContext);
+  const { state } = useContext(AppContext);
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    
     const newEmail = event.target.value;
     setEmail(newEmail);
+    
     if (!isValidEmail(email)) {
-      setError('Introduzca una dirección de correo electrónico válida');
+      dispatch({type:'ERROR_CHANGED', payload: 'Introduzca una dirección de correo electrónico válida'});
       dispatch({ type: 'EMAIL_CHANGED', payload: '' });
 
     } else {
-      setError('');
       dispatch({ type: 'EMAIL_CHANGED', payload: email });
+      dispatch({type:'ERROR_CHANGED', payload: ''});
 
     }
   };
@@ -38,18 +42,17 @@ const FormLogin: React.FC<LoginProps> = ({ handleSubmit }: LoginProps) => {
     const newPassword = event.target.value;
     setPassword(newPassword);
     if (password.length < 1) {
-      setError('La contraseña no puede estar vacía');
+      dispatch({type:'ERROR_CHANGED', payload: 'La contraseña no puede estar vacía'});
       dispatch({ type: 'PASSWORD_CHANGED', payload: '' });
 
     }
     else if (password.length < 8) {
-      setError('La contraseña debe tener al menos 8 caracteres');
+      dispatch({type:'ERROR_CHANGED', payload: 'La contraseña debe tener al menos 8 caracteres'});
       dispatch({ type: 'PASSWORD_CHANGED', payload: '' });
 
     } else {
-      setError('');
+      dispatch({type:'ERROR_CHANGED', payload: ''});
       dispatch({ type: 'PASSWORD_CHANGED', payload: password });
-
     }
   };
 
@@ -86,7 +89,7 @@ const FormLogin: React.FC<LoginProps> = ({ handleSubmit }: LoginProps) => {
         </button>
 
         <p>¿No tienes una cuenta? <Link to='/register' className="auth__register-link">Regístrate</Link></p>
-        {error && <p className="auth__error">{error}</p>}
+        {state.error && <p className="auth__error">{state.error}</p>}
       </fieldset>
     </form>
   );

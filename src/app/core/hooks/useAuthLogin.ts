@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 // import { jwtDecode } from 'jwt-decode';
 import { authServiceLogin } from '../services/login.service';
-import Swal from 'sweetalert2';
+import { useContext, useState } from 'react';
+import { AppContext } from '../state/AppContext';
 
 interface DecodedToken {
   sub: string; // Asunto del token (Subject)
@@ -13,36 +14,27 @@ interface DecodedToken {
 
 export const useAuthLogin = () => {
 
+  const [error, setError] = useState<string>();
+  const { dispatch } = useContext(AppContext);
+
   const navigateTo = useNavigate();
 
+ 
   const authenticate = (email: string, password: string) => authServiceLogin({ Email: email, Password: password })
     .then((response) => {
       switch (response.statusCode) {
       case 400:
-        Swal.fire({
-          icon: 'error',
-          title: 'Error de autenticación',
-          text: 'Credenciales inválidas',
-        });
+        dispatch({type:'ERROR_CHANGED', payload: 'Credenciales inválidas'});
         break;
-
       case 500:
-        Swal.fire({
-          icon: 'error',
-          title: 'Error del servidor',
-          text: 'Ha ocurrido un error en el servidor',
-        });
+        dispatch({type:'ERROR_CHANGED', payload: 'Ha ocurrido un error en el servidor'});        
         break;
       case 200:
-        Swal.fire({
-          icon: 'success',
-          title: 'Éxito',
-          text: 'Has iniciado sesión correctamente',
-        });
+        dispatch({type:'ERROR_CHANGED', payload: ''});
+        alert('Se ha iniciado correctamente sesión');
         navigateTo('/home/'+response.token);
-
       }
 
     });
-  return { authenticate };
+  return { authenticate,error,setError};
 };
