@@ -7,7 +7,7 @@ export const useRegister = () => {
   const [error, setError] = useState<string>();
   
   const register = (name: string, email: string, password: string) => {
-    registerService({ name, email, password })
+    registerService({ username: name, email, password })
       .then((AuthenticatedResponse) => {
         const responseHandlers: { [key: number]: () => void } = {
           200: () => navigate('/'),
