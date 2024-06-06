@@ -18,7 +18,7 @@ export const Label = ({ classNameLabel, classNameInput, classNameSpan, text, typ
   return (
     <label className={classNameLabel}>
       <span className={classNameSpan}>{text}</span>
-      <input className={`${classNameInput} ${hasError ? 'error' : ''}`} type={type} name={nameInput} onChange={onChange} placeholder={placeHolder} />
+      <input className={`${classNameInput} ${hasError ? 'error' : ''}`} type={type} name={nameInput} onBlur={onChange} onChange={onChange} placeholder={placeHolder} />
     </label>
   );
 };
