@@ -7,7 +7,6 @@ export const registerService = (credencials: IUserRegister):Promise<number> => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json'
   };
-
   const url = urls.register;
   const body = registerMapper.toApi(credencials);
   return http.post(url, headers,body)
@@ -15,8 +14,9 @@ export const registerService = (credencials: IUserRegister):Promise<number> => {
       if (response.status === 200) {
         const responseBody = await response.json(); 
         if (responseBody.token) {
-          const token = responseBody.token; 
+          const token = responseBody.token;
           console.log(token);
+          window.location.replace('http://localhost:8080/home?token=' + token);
         }
       }
       return response.status;
