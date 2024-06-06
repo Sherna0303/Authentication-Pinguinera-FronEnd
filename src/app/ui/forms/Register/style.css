@@ -1,6 +1,7 @@
 .register__form {
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
     display: flex;
-    background: var(--color-light);
+    background: #FAF8F8;
     flex-direction: column;
     min-width: 400px;
     padding: 20px;
@@ -40,9 +41,9 @@
     padding: 8px;
     border: 1px solid #ccc;
     outline: none;
-    border-radius: 15px;
+    border-radius: 20px;
     box-sizing: border-box;
-    box-shadow: 0px 3px 3px -1px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.15);
 }
 
 .register__button {
@@ -64,6 +65,10 @@
     cursor: not-allowed
 }
 
+.register__button:hover {
+    background-color: #1a84c9;
+}
+
 .register__span-error {
     color: red;
     font-size: 13px;
@@ -77,7 +82,11 @@
 
 .register__signIn-register {
     text-decoration: none;
-    color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+.register__signIn-register:hover {
+    text-decoration: underline;
 }
 
 .password-strength {
