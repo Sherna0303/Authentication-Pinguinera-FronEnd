@@ -3,13 +3,12 @@ import './style.css';
 import FormLogin from '../../forms/login';
 import { AppContext } from '../../../core/state/AppContext';
 import Swal from 'sweetalert2';
+import { useAuthLogin } from '../../../core/hooks/useAuthLogin';
 
 const LoginComponent = (): ReactElement => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // // const { authenticate, errorMessage } = useAuthLogin();
-  const { state } = useContext(AppContext);
 
+  const { authenticate} = useAuthLogin();
+  const { state } = useContext(AppContext);
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
@@ -23,14 +22,11 @@ const LoginComponent = (): ReactElement => {
         title: 'Campos Incorrectos',
         text: 'Verifica que los dato ingresados sean los correctos',
       });
-      return;      return;
+      return;
     }
-    Swal.fire({
-      icon: 'success',
-      title: 'Formulario enviado',
-      text: 'El formulario se ha enviado correctamente.',
-    });
-
+    else {
+      await authenticate(emailUser, passwordUser);
+    }
   };
 
 
