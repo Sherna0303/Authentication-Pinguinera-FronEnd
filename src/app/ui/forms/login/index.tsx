@@ -89,7 +89,7 @@ const FormLogin: React.FC<LoginProps> = ({ handleSubmit }: LoginProps) => {
           Iniciar sesión
         </button>
 
-        <p>¿No tienes una cuenta? <Link to='/register' className="auth__register-link">Regístrate</Link></p>
+        <p className='auth__register'>¿No tienes una cuenta? <Link to='/register' className="auth__register-link">Regístrate</Link></p>
       </fieldset>
     </form>
   );
