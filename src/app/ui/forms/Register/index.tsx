@@ -84,7 +84,7 @@ export const FormRegister = (): ReactElement => {
   };
 
   const PasswordStrengthDescription = (strength: number): string => {
-    const description : Record<number, string> = {1: 'Muy mala', 2: 'Mala', 3: 'Normal', 4: 'Buena', 5:'Excelente'};
+    const description : Record<number, string> = {1: 'Muy insegura', 2: 'Insegura', 3: 'Normal', 4: 'Buena', 5:'Excelente'};
     return description[strength];
   };
 
