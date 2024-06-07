@@ -20,8 +20,8 @@ export const AuthServiceLogin = async (credentials: IUserLogin): Promise<number 
           const token = responseBody.token;
           const responseHandlers: { [key: string]: () => void } = {
             READER: () => window.location.replace(urls.home + '?token=' + token),
-            SUPPLIER: () => window.location.replace(urls.loan + '?token=' + token),
-            ASSISTANT: () => window.location.replace(urls.provider + '?token=' + token),
+            ASSISTANT: () => window.location.replace(urls.loan + '?token=' + token),
+            SUPPLIER: () => window.location.replace(urls.provider + '?token=' + token),
             ADMIN: () => window.location.replace(urls.admin + '?token=' + token),
           };
 
