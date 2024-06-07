@@ -4,5 +4,5 @@ export const environment = {
   urlComerce: 'http://localhost:8080',
   urlLoan: 'http://localhost:8080',
   urlProvider: 'http://localhost:8080',
-  urlAdmin: 'http://localhost:8080'
+  urlAdmin: 'http://localhost:8081'
 };
