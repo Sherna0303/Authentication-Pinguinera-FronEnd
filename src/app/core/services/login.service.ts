@@ -1,4 +1,5 @@
-import { IUserCredentials } from '../models/user-credentials';
+import loginMapper from '../mappers/login.mapper';
+import { IUserLogin } from '../models/user-login.model';
 import { urls } from '../resources/url.resource';
 import http from './general/http.service';
 
@@ -6,10 +7,9 @@ const headers: HeadersInit = {
   'Content-Type': 'application/json'
 };
 
-export const AuthServiceLogin = async (credentials: IUserCredentials): Promise<number | undefined> => {
+export const AuthServiceLogin = async (credentials: IUserLogin): Promise<number | undefined> => {
   const url = urls.login;
-  // const body = authenticationMapper.toApiLogin(credentials);
-  const body = credentials;
+  const body = loginMapper.toApi(credentials);
 
   return http.post(url, headers, body)
     .then(async (response) => {
@@ -17,9 +17,6 @@ export const AuthServiceLogin = async (credentials: IUserCredentials): Promise<n
       if (response.status === 200) {
         const responseBody = await response.json();
         if (responseBody.Token) {
-
-          alert('Se ha iniciado correctamente sesión');
-
           const token = responseBody.Token;
           const responseHandlers: { [key: string]: () => void } = {
             READER: () => window.location.replace(urls.home + '?token=' + token),
