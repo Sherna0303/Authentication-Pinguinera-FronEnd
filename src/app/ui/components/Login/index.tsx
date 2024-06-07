@@ -2,7 +2,7 @@ import { ReactElement, useContext } from 'react';
 import './style.css';
 import { AppContext } from '../../../core/state/AppContext';
 import { useAuthLogin } from '../../../core/hooks/useAuthLogin';
-import FormLogin from '../../forms/login';
+import FormLogin from '../../forms/Login';
 
 const LoginComponent = (): ReactElement => {
 

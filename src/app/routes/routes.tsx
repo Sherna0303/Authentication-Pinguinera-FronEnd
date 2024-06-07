@@ -1,27 +1,17 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { AuthLayout } from '../ui/layouts/auth-layout';
 import { RegisterPage } from '../pages/register.page';
 import { LoginPage } from '../pages/login.page';
 
-export const router = createBrowserRouter([
-  {
-    Component: AuthLayout,
-    children: [
-      {
-        path:'',
-        element:
-          <LoginPage/>
-      },
-      {
-        path: 'login',
-        element: 
-              <LoginPage/>
-      },
-      {
-        path: 'register',
-        element: 
-              <RegisterPage/>
-      },
-    ]
-  },
-]);
+export const AppRouter = () => {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<AuthLayout />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+        </Route>
+      </Routes>
+    </HashRouter>
+  );
+};
