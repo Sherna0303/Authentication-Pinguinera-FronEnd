@@ -7,7 +7,7 @@ export const useAuthLogin = () => {
 
   const { dispatch } = useContext(AppContext);
  
-  const login = (email: string, password: string) => AuthServiceLogin({ Email: email, Password: password })
+  const login = (email: string, password: string) => AuthServiceLogin({ email: email, password: password })
     .then((response) => {
       switch (response) {
       case 400:
