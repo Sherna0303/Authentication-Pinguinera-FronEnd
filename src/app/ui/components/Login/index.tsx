@@ -15,16 +15,19 @@ const LoginComponent = (): ReactElement => {
 
     const emailUser = state.email;
     const passwordUser = state.password;
-
-    if (emailUser.length<1 || passwordUser.length<1) {
-      dispatch({type:'ERROR_CHANGED', payload: 'Verifica que los dato ingresados sean los correctos'});
-
-    }
-    else {
+    if (emailUser.length>0 && passwordUser.length>0) {
       await login(emailUser, passwordUser);
     }
+    else if (emailUser.length==0) {
+      dispatch({type:'ERROR_CHANGED', payload: 'Ingresa un correo electrónico válido'});
+    }
+    else if (passwordUser.length==0) {
+      dispatch({type:'ERROR_CHANGED', payload: 'La contraseña debe tener al menos 8 caracteres'});
+    }
+    else {
+      dispatch({type:'ERROR_CHANGED', payload: 'Ingresa un correo electrónico y una contraseña válidos'});
+    }
   };
-
 
   return (
     <main className="auth authLogin">

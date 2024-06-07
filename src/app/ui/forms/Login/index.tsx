@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Label } from '../../elements/Label';
 import './style.css';
-import { useContext, useState } from 'react';
+import { useContext} from 'react';
 import { AppContext } from '../../../core/state/AppContext';
 
 interface LoginProps {
@@ -15,13 +15,9 @@ const FormLogin: React.FC<LoginProps> = ({ handleSubmit }: LoginProps) => {
   const { dispatch } = useContext(AppContext);
   const { state } = useContext(AppContext);
 
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     
-    const newEmail = event.target.value;
-    setEmail(newEmail);
+    const email = event.target.value;
     
     if (!isValidEmail(email)) {
       dispatch({type:'ERROR_CHANGED', payload: 'Introduzca una dirección de correo electrónico válida'});
@@ -39,8 +35,9 @@ const FormLogin: React.FC<LoginProps> = ({ handleSubmit }: LoginProps) => {
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newPassword = event.target.value;
-    setPassword(newPassword);
+
+    const password = event.target.value;
+  
     if (password.length < 1) {
       dispatch({type:'ERROR_CHANGED', payload: 'La contraseña no puede estar vacía'});
       dispatch({ type: 'PASSWORD_CHANGED', payload: '' });
