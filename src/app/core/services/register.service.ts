@@ -12,20 +12,19 @@ export const registerService = (credencials: IUserRegister):Promise<number | und
   const body = registerMapper.toApi(credencials);
   return http.post(url, headers,body)
     .then(async (response) => {
-      if (response.status === 200) {
-        const responseBody = await response.json(); 
-        if (responseBody.Token) {
-          const token = responseBody.Token;
-          const responseHandlers: { [key: string]: () => void } = {
-            READER: () => window.location.replace(urls.home + '?token=' + token)
-          };
+      if (!response.status.toString().startsWith('2')) return response.status;
+      const responseBody = await response.json(); 
+      if (responseBody.token) {
+        const token = responseBody.token;
+        const responseHandlers: { [key: string]: () => void } = {
+          READER: () => window.location.replace(urls.home + '?token=' + token)
+        };
 
-          const handleResponse = responseHandlers[responseBody.Role];
-          handleResponse();
-          return;
-        }
+        const handleResponse = responseHandlers[responseBody.role];
+        handleResponse();
+        return;
       }
-      return response.status;
+      return;
     });
 };
 

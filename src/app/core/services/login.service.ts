@@ -16,8 +16,8 @@ export const AuthServiceLogin = async (credentials: IUserLogin): Promise<number 
 
       if (response.status === 200) {
         const responseBody = await response.json();
-        if (responseBody.Token) {
-          const token = responseBody.Token;
+        if (responseBody.token) {
+          const token = responseBody.token;
           const responseHandlers: { [key: string]: () => void } = {
             READER: () => window.location.replace(urls.home + '?token=' + token),
             SUPPLIER: () => window.location.replace(urls.loan + '?token=' + token),
@@ -25,7 +25,7 @@ export const AuthServiceLogin = async (credentials: IUserLogin): Promise<number 
             ADMIN: () => window.location.replace(urls.admin + '?token=' + token),
           };
 
-          const handleResponse = responseHandlers[responseBody.Role];
+          const handleResponse = responseHandlers[responseBody.role];
           handleResponse();
           return;
         }
