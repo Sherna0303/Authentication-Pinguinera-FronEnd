@@ -1,13 +1,13 @@
 import { ReactElement, useContext } from 'react';
 import './style.css';
-import FormLogin from '../../forms/Login';
 import { AppContext } from '../../../core/state/AppContext';
 import { useAuthLogin } from '../../../core/hooks/useAuthLogin';
+import FormLogin from '../../forms/login';
 
 const LoginComponent = (): ReactElement => {
 
   const { dispatch } = useContext(AppContext);
-  const { authenticate,} = useAuthLogin();
+  const { login} = useAuthLogin();
   const { state } = useContext(AppContext);
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
@@ -21,7 +21,7 @@ const LoginComponent = (): ReactElement => {
 
     }
     else {
-      await authenticate(emailUser, passwordUser);
+      await login(emailUser, passwordUser);
     }
   };
 
