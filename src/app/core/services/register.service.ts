@@ -17,10 +17,7 @@ export const registerService = (credencials: IUserRegister):Promise<number | und
         if (responseBody.Token) {
           const token = responseBody.Token;
           const responseHandlers: { [key: string]: () => void } = {
-            READER: () => window.location.replace(urls.home + '?token=' + token),
-            SUPPLIER: () => window.location.replace(urls.loan + '?token=' + token),
-            ASSISTANT: () => window.location.replace(urls.provider + '?token=' + token),
-            ADMIN: () => window.location.replace(urls.admin + '?token=' + token),
+            READER: () => window.location.replace(urls.home + '?token=' + token)
           };
 
           const handleResponse = responseHandlers[responseBody.Role];
